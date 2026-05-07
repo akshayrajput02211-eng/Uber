@@ -1,9 +1,13 @@
 const express = require('express');
 const router = express.Router();
-const captainController = require('../controllers/captain.controller');
+const captainController = require(
+  "../controllers/captain.controller"
+);
 const auth = require('../middlewares/auth.middleware'); 
 const {body} = require('express-validator');
-const validate = require('../middlewares/validation.middleware');
+const validate = require(
+  "../middlewares/validate.middleware"
+);
 
 
 router.post('/register',

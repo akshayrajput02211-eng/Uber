@@ -1,11 +1,29 @@
-const http = require('http');
-const app = require('./app');
-const port = process.env.PORT || 5000;
+const http = require("http");
 
-const server= http.createServer(app);
+const app = require("./app");
 
+const server = http.createServer(app);
 
-server.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-  
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "*",
+  },
+});
+
+global.io = io;
+
+io.on("connection", (socket) => {
+
+  console.log("Socket Connected");
+
+  socket.on("disconnect", () => {
+
+    console.log("Disconnected");
+
+  });
+
+});
+
+server.listen(3000, () => {
+  console.log("Server Running");
 });
